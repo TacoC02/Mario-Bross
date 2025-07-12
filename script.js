@@ -560,3 +560,72 @@ function detectarColisionGoombaAlado() {
   }
 }
 
+const btnIzquierda = document.querySelector('.btn-movil.izquierda');
+const btnDerecha = document.querySelector('.btn-movil.derecha');
+const btnAbajo = document.querySelector('.btn-movil.abajo');
+const btnSalto = document.querySelector('.btn-movil.salto');
+
+if (btnIzquierda && btnDerecha && btnAbajo && btnSalto) {
+  // Izquierda
+  btnIzquierda.addEventListener('touchstart', e => {
+    e.preventDefault();
+    izquierdaPresionado = true;
+  });
+  btnIzquierda.addEventListener('touchend', e => {
+    e.preventDefault();
+    izquierdaPresionado = false;
+  });
+
+  // Derecha
+  btnDerecha.addEventListener('touchstart', e => {
+    e.preventDefault();
+    derechaPresionado = true;
+  });
+  btnDerecha.addEventListener('touchend', e => {
+    e.preventDefault();
+    derechaPresionado = false;
+  });
+
+  // Abajo
+  btnAbajo.addEventListener('touchstart', e => {
+    e.preventDefault();
+    abajoPresionado = true;
+    //agacharse
+    if (abajoPresionado && !marioGrande && !yoshiMario) {
+      mario.src = "./imagenes/Mario_Agachado_Peque.png"
+      mario.style.width = "33px"
+      mario.style.height = "33px"
+    }
+    if (abajoPresionado && marioGrande && !yoshiMario) {
+      mario.src = "./imagenes/Mario_Agachado_Grande.png"
+      mario.style.width = "60px"
+      mario.style.height = "50px"
+    }
+  });
+  btnAbajo.addEventListener('touchend', e => {
+    e.preventDefault();
+    abajoPresionado = false;
+    //agacharse
+    if (!abajoPresionado && !marioGrande && !yoshiMario) {
+      mario.src = "./imagenes/Mario_Peque.gif"
+      mario.style.height = "50px"
+    }
+    if (!abajoPresionado && marioGrande && !yoshiMario) {
+      mario.src = "./imagenes/Mario_Grande.gif";
+      mario.style.width = "80px";
+      mario.style.height = "80px";
+    }
+  });
+
+  // Salto
+  btnSalto.addEventListener('touchstart', e => {
+    e.preventDefault();
+    if (saltarPresionado == 0) {
+      saltarPresionado = 1;
+    }
+  });
+  btnSalto.addEventListener('touchend', e => {
+    e.preventDefault();
+
+  });
+}
